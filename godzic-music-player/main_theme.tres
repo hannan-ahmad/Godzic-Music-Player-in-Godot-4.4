@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://8icts24i3jjh"]
+
+[ext_resource type="Texture2D" uid="uid://cmmhjtlpqb6qr" path="res://ui/CheckBox_checked.svg" id="1_466ly"]
+[ext_resource type="FontFile" uid="uid://0wnrkhgwfxee" path="res://fonts/Inter-Medium.ttf" id="1_470mv"]
+[ext_resource type="Texture2D" uid="uid://c7mr680qvsqii" path="res://ui/CheckBox_checked_disabled.svg" id="2_52mx2"]
+[ext_resource type="Texture2D" uid="uid://iognjpo2anms" path="res://ui/CheckBox_unchecked.svg" id="3_py0i1"]
+[ext_resource type="Texture2D" uid="uid://dn1kxt6ar1jbe" path="res://ui/CheckBox_unchecked_disabled.svg" id="4_sxwih"]
+
+[resource]
+default_font = ExtResource("1_470mv")
+CheckBox/font_sizes/font_size = 14
+CheckBox/icons/checked = ExtResource("1_466ly")
+CheckBox/icons/checked_disabled = ExtResource("2_52mx2")
+CheckBox/icons/unchecked = ExtResource("3_py0i1")
+CheckBox/icons/unchecked_disabled = ExtResource("4_sxwih")
+RichTextLabel/font_sizes/bold_font_size = 20
+RichTextLabel/font_sizes/bold_italics_font_size = 20
+RichTextLabel/font_sizes/italics_font_size = 20
+RichTextLabel/font_sizes/mono_font_size = 20
+RichTextLabel/font_sizes/normal_font_size = 20

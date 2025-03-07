@@ -1,0 +1,667 @@
+[gd_scene load_steps=21 format=3 uid="uid://pkod4j341gmi"]
+
+[ext_resource type="Theme" uid="uid://8icts24i3jjh" path="res://main_theme.tres" id="1_blmlm"]
+[ext_resource type="Script" uid="uid://bickugpcppyom" path="res://godzic.gd" id="1_kxwij"]
+[ext_resource type="Script" uid="uid://doelrqwgulhht" path="res://clicky.gd" id="3_qxso2"]
+[ext_resource type="AudioStream" uid="uid://e0bjslwbut82" path="res://sfx/Abstract1.ogg" id="3_td581"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rs2jn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxso2"]
+
+[sub_resource type="Animation" id="Animation_rs2jn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/SongAnimation/SongLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(464, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qxso2"]
+resource_name = "song_scroll"
+length = 5.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/SongAnimation/SongLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(680, 0), Vector2(-680, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ele7"]
+_data = {
+&"RESET": SubResource("Animation_rs2jn"),
+&"song_scroll": SubResource("Animation_qxso2")
+}
+
+[sub_resource type="Animation" id="Animation_0c05h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/PlayHandler:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.166667]
+}
+
+[sub_resource type="Animation" id="Animation_8ele7"]
+resource_name = "open"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/PlayHandler:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.166667]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0c05h"]
+_data = {
+&"RESET": SubResource("Animation_0c05h"),
+&"open": SubResource("Animation_8ele7")
+}
+
+[sub_resource type="Animation" id="Animation_c7qup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/HistorySection:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ufh7l"]
+resource_name = "close"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/HistorySection:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.166667, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/Playlist")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_muiv6"]
+resource_name = "open"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/HistorySection:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.166667]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/Playlist")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ufh7l"]
+_data = {
+&"RESET": SubResource("Animation_c7qup"),
+&"close": SubResource("Animation_ufh7l"),
+&"open": SubResource("Animation_muiv6")
+}
+
+[sub_resource type="Animation" id="Animation_vtel0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/Playlist:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_61lgj"]
+resource_name = "close"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/Playlist:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.166667, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/HistorySection")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gujao"]
+resource_name = "open"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/Playlist:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.166667]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/HistorySection")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtel0"]
+_data = {
+&"RESET": SubResource("Animation_vtel0"),
+&"close": SubResource("Animation_61lgj"),
+&"open": SubResource("Animation_gujao")
+}
+
+[node name="Godzic" type="Node2D"]
+script = ExtResource("1_kxwij")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_blmlm")
+
+[node name="BrowseButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+anchor_left = 0.923611
+anchor_top = 0.0246914
+anchor_right = 0.990451
+anchor_bottom = 0.0725309
+offset_right = 0.000366211
+text = "BROWSE"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="AboutButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.923611
+anchor_top = 0.123457
+anchor_right = 0.990451
+anchor_bottom = 0.197531
+offset_bottom = -17.0
+text = "ABOUT
+ME"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayHandler" type="Control" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SeekBar" type="HSlider" parent="CanvasLayer/UI/PlayHandler"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.796296
+anchor_right = 0.888889
+anchor_bottom = 0.820988
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/UI/PlayHandler"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166667
+anchor_top = 0.790123
+anchor_right = 0.209201
+anchor_bottom = 0.833333
+offset_right = 0.000839233
+text = "PLAY"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="VolumeButton" type="Button" parent="CanvasLayer/UI/PlayHandler"]
+layout_mode = 0
+anchor_left = 0.904514
+anchor_top = 0.787037
+anchor_right = 0.970486
+anchor_bottom = 0.830247
+offset_right = 0.000244141
+text = "VOLUME"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="VolumeSlider" type="VSlider" parent="CanvasLayer/UI/PlayHandler"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.930555
+anchor_top = 0.530865
+anchor_right = 0.944444
+anchor_bottom = 0.736112
+min_value = -80.0
+max_value = 10.0
+value = -10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HistorySection" type="Control" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = -1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/HistorySection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.584314)
+metadata/_edit_use_anchors_ = true
+
+[node name="HistoryButton" type="Button" parent="CanvasLayer/UI/HistorySection"]
+layout_mode = 0
+anchor_left = 1.02778
+anchor_top = 0.0246914
+anchor_right = 1.09549
+anchor_bottom = 0.0679012
+offset_bottom = 4.95911e-05
+text = "HISTORY"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/HistorySection"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.863095
+anchor_top = 0.0493827
+anchor_right = 0.993303
+anchor_bottom = 0.950617
+metadata/_edit_use_anchors_ = true
+
+[node name="HistoryContainer" type="VBoxContainer" parent="CanvasLayer/UI/HistorySection/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Playlist" type="Control" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = -0.666667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/Playlist"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.584314)
+metadata/_edit_use_anchors_ = true
+
+[node name="PlaylistButton" type="Button" parent="CanvasLayer/UI/Playlist"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.04167
+anchor_top = 0.0987654
+anchor_right = 1.14974
+anchor_bottom = 0.141975
+text = "PLAYLIST"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="AddToPlaylistButton" type="Button" parent="CanvasLayer/UI/Playlist"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.808593
+anchor_top = 0.0246914
+anchor_right = 0.880208
+anchor_bottom = 0.0987654
+theme_override_font_sizes/font_size = 10
+text = "ADD TO
+PLAYLIST"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="RenamePlaylistButton" type="Button" parent="CanvasLayer/UI/Playlist"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.908854
+anchor_top = 0.0246914
+anchor_right = 0.980468
+anchor_bottom = 0.0987654
+theme_override_font_sizes/font_size = 10
+text = "RENAME
+PLAYLIST"
+script = ExtResource("3_qxso2")
+metadata/_custom_type_script = "uid://doelrqwgulhht"
+metadata/_edit_use_anchors_ = true
+
+[node name="PlaylistEdit" type="LineEdit" parent="CanvasLayer/UI/Playlist"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.808333
+anchor_top = 0.111111
+anchor_right = 0.986458
+anchor_bottom = 0.154321
+placeholder_text = "Enter Playlist Name"
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlaylistName" type="Label" parent="CanvasLayer/UI/Playlist"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.816666
+anchor_top = 0.185185
+anchor_right = 0.979166
+anchor_bottom = 0.234568
+text = "MY PLAYLIST"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/Playlist"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.808333
+anchor_top = 0.279321
+anchor_right = 0.991666
+anchor_bottom = 0.740741
+offset_bottom = 3.05176e-05
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs2jn")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlaylistContainer" type="VBoxContainer" parent="CanvasLayer/UI/Playlist/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LoopSongCheck" type="CheckBox" parent="CanvasLayer/UI/Playlist"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.808333
+anchor_top = 0.765432
+anchor_right = 0.964583
+anchor_bottom = 0.858025
+offset_right = -20.0
+offset_bottom = -16.0
+text = "Loop Song"
+metadata/_edit_use_anchors_ = true
+
+[node name="LoopPlaylistCheck" type="CheckBox" parent="CanvasLayer/UI/Playlist"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.808333
+anchor_top = 0.839506
+anchor_right = 0.959375
+anchor_bottom = 0.907407
+offset_right = 6.10352e-05
+text = "Loop Playlist"
+metadata/_edit_use_anchors_ = true
+
+[node name="RandomizePlaylistCheck" type="CheckBox" parent="CanvasLayer/UI/Playlist"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.808333
+anchor_top = 0.91358
+anchor_right = 0.946875
+anchor_bottom = 0.987654
+offset_bottom = 6.10352e-05
+text = "Randomize
+Playlist"
+metadata/_edit_use_anchors_ = true
+
+[node name="SongAnimation" type="Panel" parent="CanvasLayer/UI"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.298611
+anchor_top = 0.888889
+anchor_right = 0.888889
+anchor_bottom = 0.950617
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qxso2")
+metadata/_edit_use_anchors_ = true
+
+[node name="SongLabel" type="Label" parent="CanvasLayer/UI/SongAnimation"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 464.0
+offset_right = 464.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AboutText" type="RichTextLabel" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 208.0
+offset_top = 64.0
+offset_right = 904.0
+offset_bottom = 320.0
+bbcode_enabled = true
+text = "Hi! I am Abdul Hannan Ahmed. I'm 17 years old. I started my game dev journey with Unity in November 2023.
+
+After the Unity drama, I tried looking for alternatives, and I stumbled upoin Godot. During that time, Godot 4 had recently used. I switched over to Godot. I purchased my 2D course from [url=https://school.gdquest.com/products/godot-4-early-access]GDQuest[/url]. The course was so good that I felt that I needed the 3D course too. I bought it too, and then the Node Essentials too. That was it. This Music Player (Godzic) you're using right now, it was made in less than an year of studying at [url=https://school.gdquest.com/products/godot-4-early-access]GDQuest[/url]. They not only teach you with interactive exercises, but teach you how to efficiently utilize the documentation, and think independently like a programming, being able to make your own games and mechanics without relying on Step-by-Step tutorials.
+
+I would sincerely like to thank [url=https://school.gdquest.com/products/godot-4-early-access]GDQuest[/url] for their wonderful courses. I wouldn't ever be where I am now, without your courses."
+
+[node name="FileBrowsers" type="Node" parent="."]
+
+[node name="MusicFileDialogue" type="FileDialog" parent="FileBrowsers"]
+unique_name_in_owner = true
+title = "Open a File"
+position = Vector2i(162, 36)
+exclusive = false
+popup_window = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.mp3, *.ogg, *.wav; Music Files")
+
+[node name="PlaylistFileDialog" type="FileDialog" parent="FileBrowsers"]
+unique_name_in_owner = true
+title = "Open File(s)"
+position = Vector2i(145, 110)
+exclusive = false
+popup_window = true
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.mp3, *.ogg, *.wav; Music Files")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_td581")
+bus = &"Sfx"
+
+[node name="SongAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8ele7")
+}
+autoplay = "song_scroll"
+
+[node name="PlayerHandlerAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0c05h")
+}
+
+[node name="HistoryAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ufh7l")
+}
+
+[node name="PlaylistAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vtel0")
+}
+
+[connection signal="pressed" from="CanvasLayer/UI/BrowseButton" to="." method="_on_browse_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="drag_ended" from="CanvasLayer/UI/PlayHandler/SeekBar" to="." method="_on_seek_bar_drag_ended"]
+[connection signal="drag_started" from="CanvasLayer/UI/PlayHandler/SeekBar" to="." method="_on_seek_bar_drag_started"]
+[connection signal="pressed" from="CanvasLayer/UI/PlayHandler/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/PlayHandler/VolumeButton" to="." method="_on_volume_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/UI/PlayHandler/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/UI/HistorySection/HistoryButton" to="." method="_on_history_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Playlist/PlaylistButton" to="." method="_on_playlist_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Playlist/AddToPlaylistButton" to="." method="_on_add_to_playlist_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Playlist/RenamePlaylistButton" to="." method="_on_rename_playlist_button_pressed"]
+[connection signal="text_submitted" from="CanvasLayer/UI/Playlist/PlaylistEdit" to="." method="_on_playlist_edit_text_submitted"]
+[connection signal="pressed" from="CanvasLayer/UI/Playlist/LoopSongCheck" to="." method="_on_loop_song_check_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Playlist/LoopPlaylistCheck" to="." method="_on_loop_playlist_check_pressed"]
+[connection signal="meta_clicked" from="CanvasLayer/UI/AboutText" to="." method="_on_about_text_meta_clicked"]
+[connection signal="file_selected" from="FileBrowsers/MusicFileDialogue" to="." method="_on_music_file_dialogue_file_selected"]
+[connection signal="files_selected" from="FileBrowsers/PlaylistFileDialog" to="." method="_on_playlist_file_dialog_files_selected"]
+[connection signal="finished" from="AudioPlayer" to="." method="_on_audio_player_finished"]
